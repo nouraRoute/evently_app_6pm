@@ -3,8 +3,14 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
+    dividerTheme: DividerThemeData(color: AppColors.mainColor),
     scaffoldBackgroundColor: AppColors.lightBgColors,
-    colorScheme: ColorScheme.fromSeed(seedColor: AppColors.mainColor),
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: AppColors.mainColor,
+      primary: AppColors.mainColor,
+    ),
+    hintColor: AppColors.greyColor,
+    hoverColor: AppColors.greyColor,
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.lightBgColors,
       iconTheme: IconThemeData(color: AppColors.mainColor),
@@ -18,8 +24,14 @@ class AppTheme {
     textTheme: _getTextTheme(AppColors.lightTextColors),
   );
   static ThemeData darkTheme = ThemeData(
+    dividerTheme: DividerThemeData(color: AppColors.mainColor),
     scaffoldBackgroundColor: AppColors.darkBgColor,
-    colorScheme: ColorScheme.fromSeed(seedColor: AppColors.mainColor),
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: AppColors.mainColor,
+      primary: AppColors.mainColor,
+    ),
+    hintColor: AppColors.mainColor,
+    hoverColor: AppColors.darkTextColor,
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.darkBgColor,
       iconTheme: IconThemeData(color: AppColors.mainColor),
