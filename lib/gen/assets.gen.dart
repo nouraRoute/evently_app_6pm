@@ -34,9 +34,33 @@ class $AssetsIconsGen {
   /// File path: assets/icons/en_icon.png
   AssetGenImage get enIcon => const AssetGenImage('assets/icons/en_icon.png');
 
+  /// File path: assets/icons/fav_icon_selected.svg
+  SvgGenImage get favIconSelected =>
+      const SvgGenImage('assets/icons/fav_icon_selected.svg');
+
+  /// File path: assets/icons/fav_icon_unselected.svg
+  SvgGenImage get favIconUnselected =>
+      const SvgGenImage('assets/icons/fav_icon_unselected.svg');
+
   /// File path: assets/icons/google_icon.png
   AssetGenImage get googleIcon =>
       const AssetGenImage('assets/icons/google_icon.png');
+
+  /// File path: assets/icons/home_icon_selected.svg
+  SvgGenImage get homeIconSelected =>
+      const SvgGenImage('assets/icons/home_icon_selected.svg');
+
+  /// File path: assets/icons/home_icon_unselected.svg
+  SvgGenImage get homeIconUnselected =>
+      const SvgGenImage('assets/icons/home_icon_unselected.svg');
+
+  /// File path: assets/icons/location_icon_selected.svg
+  SvgGenImage get locationIconSelected =>
+      const SvgGenImage('assets/icons/location_icon_selected.svg');
+
+  /// File path: assets/icons/location_icon_unselected.svg
+  SvgGenImage get locationIconUnselected =>
+      const SvgGenImage('assets/icons/location_icon_unselected.svg');
 
   /// File path: assets/icons/password_icon.svg
   SvgGenImage get passwordIcon =>
@@ -46,6 +70,14 @@ class $AssetsIconsGen {
   SvgGenImage get personIcon =>
       const SvgGenImage('assets/icons/person_icon.svg');
 
+  /// File path: assets/icons/profile_icon_selected.svg
+  SvgGenImage get profileIconSelected =>
+      const SvgGenImage('assets/icons/profile_icon_selected.svg');
+
+  /// File path: assets/icons/profile_icon_unselected.svg
+  SvgGenImage get profileIconUnselected =>
+      const SvgGenImage('assets/icons/profile_icon_unselected.svg');
+
   /// List of all assets
   List<dynamic> get values => [
     appIcon,
@@ -53,9 +85,53 @@ class $AssetsIconsGen {
     emailIconPng,
     emailIconSvg,
     enIcon,
+    favIconSelected,
+    favIconUnselected,
     googleIcon,
+    homeIconSelected,
+    homeIconUnselected,
+    locationIconSelected,
+    locationIconUnselected,
     passwordIcon,
     personIcon,
+    profileIconSelected,
+    profileIconUnselected,
+  ];
+}
+
+class $AssetsImageGen {
+  const $AssetsImageGen();
+
+  /// File path: assets/image/birthday_card.png
+  AssetGenImage get birthdayCard =>
+      const AssetGenImage('assets/image/birthday_card.png');
+
+  /// File path: assets/image/eating.png
+  AssetGenImage get eating => const AssetGenImage('assets/image/eating.png');
+
+  /// File path: assets/image/gaming_card.png
+  AssetGenImage get gamingCard =>
+      const AssetGenImage('assets/image/gaming_card.png');
+
+  /// File path: assets/image/logo.png
+  AssetGenImage get logo => const AssetGenImage('assets/image/logo.png');
+
+  /// File path: assets/image/meeting_card.png
+  AssetGenImage get meetingCard =>
+      const AssetGenImage('assets/image/meeting_card.png');
+
+  /// File path: assets/image/sport_card.png
+  AssetGenImage get sportCard =>
+      const AssetGenImage('assets/image/sport_card.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [
+    birthdayCard,
+    eating,
+    gamingCard,
+    logo,
+    meetingCard,
+    sportCard,
   ];
 }
 
@@ -63,6 +139,7 @@ class Assets {
   const Assets._();
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
+  static const $AssetsImageGen image = $AssetsImageGen();
 }
 
 class AssetGenImage {
