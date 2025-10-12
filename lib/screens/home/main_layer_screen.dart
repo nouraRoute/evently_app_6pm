@@ -1,10 +1,15 @@
+import 'package:evently_app_6pm/common/network/auth_service.dart';
 import 'package:evently_app_6pm/common/theme/app_colors.dart';
 import 'package:evently_app_6pm/gen/assets.gen.dart';
+import 'package:evently_app_6pm/models/user_model.dart';
+import 'package:evently_app_6pm/providers/user_provider.dart';
 import 'package:evently_app_6pm/screens/home/fav_tab/fav_tab.dart';
 import 'package:evently_app_6pm/screens/home/home_tab/home_tab.dart';
 import 'package:evently_app_6pm/screens/home/settings_tab/settings_tab.dart';
 import 'package:evently_app_6pm/screens/new_event/new_event_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MainLayerScreen extends StatefulWidget {
   const MainLayerScreen({super.key});
@@ -17,6 +22,20 @@ class MainLayerScreen extends StatefulWidget {
 class _MainLayerScreenState extends State<MainLayerScreen> {
   int currantIndent = 0;
   List<Widget> tabs = [HomeTab(), Container(), FavTab(), SettingsTab()];
+
+  @override
+  void initState() {
+    super.initState();
+    // TODO: implement initState
+    initiateUSer();
+  }
+
+  initiateUSer() async {
+    super.initState();
+    UserModel user = (await AuthService.getUserInfo())!;
+    Provider.of<UserProvider>(context, listen: false).setUser(user);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

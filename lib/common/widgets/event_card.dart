@@ -1,13 +1,21 @@
+import 'package:evently_app_6pm/common/network/auth_service.dart';
 import 'package:evently_app_6pm/common/theme/app_colors.dart';
 import 'package:evently_app_6pm/models/category_model.dart';
 import 'package:evently_app_6pm/models/event_model.dart';
+import 'package:evently_app_6pm/models/user_model.dart';
+import 'package:evently_app_6pm/providers/user_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class EventCard extends StatelessWidget {
   const EventCard({super.key, required this.eventModel});
   final EventModel eventModel;
   @override
   Widget build(BuildContext context) {
+    bool isFav =
+        (Provider.of<UserProvider>(context).userModel?.favEvent ?? [])
+            .indexWhere((element) => element.id == eventModel.id) !=
+        -1;
     String catImagePAth = CategoryModel.categories
         .firstWhere((element) => element.id == eventModel.catId)
         .designPath!;
@@ -62,11 +70,44 @@ class EventCard extends StatelessWidget {
                   width: 24,
                   child: IconButton(
                     padding: EdgeInsets.all(0),
-                    onPressed: () {},
+                    onPressed: () async {
+                      showDialog(
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (context) => Center(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(50),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(
+                                    context,
+                                  ).scaffoldBackgroundColor,
+                                  borderRadius: BorderRadius.circular(25),
+                                ),
+                                child: CircularProgressIndicator(),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+
+                      if (isFav) {
+                        await AuthService.removeFavEvent(eventModel.id!);
+                      } else {
+                        await AuthService.addFavEvent(eventModel);
+                      }
+                      UserModel userModel = (await AuthService.getUserInfo())!;
+                      Provider.of<UserProvider>(
+                        context,
+                        listen: false,
+                      ).setUser(userModel);
+                      Navigator.of(context).pop();
+                    },
                     icon: Icon(
-                      eventModel.isFav
-                          ? Icons.favorite
-                          : Icons.favorite_border_outlined,
+                      isFav ? Icons.favorite : Icons.favorite_border_outlined,
                       color: AppColors.mainColor,
                     ),
                   ),

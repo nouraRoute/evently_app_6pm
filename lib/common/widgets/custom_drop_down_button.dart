@@ -7,8 +7,10 @@ class CustomDropDownButton<T> extends StatelessWidget {
     required this.items,
     required this.onChanged,
     this.label,
+    this.value,
   });
   final String? label;
+  final T? value;
   final List<DropdownMenuItem<T>> items;
   final void Function(T?)? onChanged;
   @override
@@ -30,7 +32,7 @@ class CustomDropDownButton<T> extends StatelessWidget {
 
           DropdownButtonFormField<T>(
             padding: EdgeInsets.all(0),
-
+            initialValue: value,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.symmetric(horizontal: 10),
 
@@ -43,7 +45,7 @@ class CustomDropDownButton<T> extends StatelessWidget {
               enabledBorder: _getBorder(),
             ),
             items: items,
-            onChanged: (value) {},
+            onChanged: onChanged,
           ),
         ],
       ),

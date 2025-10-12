@@ -1,8 +1,11 @@
+import 'package:evently_app_6pm/models/event_model.dart';
+
 class UserModel {
   String name;
   String email;
   String? uid;
-  UserModel({required this.email, required this.name, this.uid});
+  List<EventModel>? favEvent;
+  UserModel({required this.email, required this.name, this.uid, this.favEvent});
 
   Map<String, dynamic> toJson() {
     return {'name': name, 'uid': uid, 'email': email};

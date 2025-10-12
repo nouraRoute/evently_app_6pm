@@ -1,12 +1,17 @@
 import 'package:evently_app_6pm/common/theme/app_colors.dart';
 import 'package:evently_app_6pm/gen/assets.gen.dart';
+import 'package:evently_app_6pm/models/user_model.dart';
+import 'package:evently_app_6pm/providers/user_provider.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 
 class SettingsHeader extends StatelessWidget {
   const SettingsHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
+    UserModel? user = Provider.of<UserProvider>(context).userModel;
+
     double width = MediaQuery.widthOf(context);
     double height = MediaQuery.heightOf(context);
     return Container(
@@ -39,7 +44,7 @@ class SettingsHeader extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'John Safwat',
+                  user?.name ?? "",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 24,
@@ -47,7 +52,7 @@ class SettingsHeader extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'johnsafwat.route@gmail.com',
+                  user?.email ?? '',
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 16,

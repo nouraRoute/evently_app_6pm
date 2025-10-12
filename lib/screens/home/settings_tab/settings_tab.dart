@@ -1,8 +1,10 @@
 import 'package:evently_app_6pm/common/theme/app_colors.dart';
 import 'package:evently_app_6pm/common/widgets/custom_drop_down_button.dart';
+import 'package:evently_app_6pm/providers/settings_provider.dart';
 import 'package:evently_app_6pm/screens/home/settings_tab/widgets/settings_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 
 class SettingsTab extends StatelessWidget {
   const SettingsTab({super.key});
@@ -14,6 +16,8 @@ class SettingsTab extends StatelessWidget {
         SettingsHeader(),
         CustomDropDownButton<String>(
           label: 'Language',
+          value: Provider.of<SettingsProvider>(context).local,
+
           items: [
             DropdownMenuItem(
               value: 'ar',
@@ -38,13 +42,21 @@ class SettingsTab extends StatelessWidget {
               ),
             ),
           ],
-          onChanged: (value) {},
+          onChanged: (value) {
+            if (value != null) {
+              Provider.of<SettingsProvider>(
+                context,
+                listen: false,
+              ).editLocalization(value);
+            }
+          },
         ),
-        CustomDropDownButton<String>(
+        CustomDropDownButton<ThemeMode>(
           label: 'Theme',
+          value: Provider.of<SettingsProvider>(context).appTheme,
           items: [
             DropdownMenuItem(
-              value: 'ar',
+              value: ThemeMode.dark,
               child: Text(
                 'Dark',
                 style: TextStyle(
@@ -55,7 +67,7 @@ class SettingsTab extends StatelessWidget {
               ),
             ),
             DropdownMenuItem(
-              value: 'en',
+              value: ThemeMode.light,
               child: Text(
                 'Light',
                 style: TextStyle(
@@ -66,7 +78,14 @@ class SettingsTab extends StatelessWidget {
               ),
             ),
           ],
-          onChanged: (value) {},
+          onChanged: (value) {
+            if (value != null) {
+              Provider.of<SettingsProvider>(
+                context,
+                listen: false,
+              ).editThemeMode(value);
+            }
+          },
         ),
       ],
     );
